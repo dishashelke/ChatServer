@@ -23,7 +23,7 @@ public class ChatServer {
 	}
 
 	public static void main(String[] args) throws IOException {
-		int port = Integer.parseInt(args[0]);
+		int port = 9399;
 		ServerSocket serverSocket = new ServerSocket(port);
 		serverSocket.setSoTimeout(100000);
 		createDefaultRooms();
@@ -108,7 +108,8 @@ public class ChatServer {
 		}
 
 		private void executeQuit() {
-			executeLeave();
+			if(currentUser.room() != null)
+				executeLeave();
 			users.remove(currentUser.name());
 			currentUser.writeMessage("BYE");
 			terminate();
