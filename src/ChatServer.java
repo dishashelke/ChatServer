@@ -181,6 +181,10 @@ public class ChatServer {
 		}
 		
 		private void displayRoomDetails(Room chatRoom){
+			if (chatRoom == null){
+				currentUser.writeMessage("You have not joined any room.");
+				return;
+			}
 			for (User each : chatRoom.users()) {
 				if (each.name().equals(currentUser.name()))
 					currentUser.writeMessage("* " + each.name()
